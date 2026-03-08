@@ -2,6 +2,10 @@ import requests
 import json
 import pandas as pd
 
+def main():
+    df = usgs_api()
+    print(df.head())
+
 def usgs_api():
     '''Perform API call to extract USGS earthquake data and convert to a dataframe.'''
     try:
@@ -41,6 +45,5 @@ def usgs_api():
 
 
 if __name__ == "__main__":
-    df = usgs_api()
-    print(df.head())
+    main()
 

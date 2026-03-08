@@ -1,8 +1,13 @@
 import requests
 import json
 import pandas as pd
+from datetime import datetime
 from sqlalchemy import create_engine,text
 
+def main():
+    df = usgs_api()
+    add_data(df)
+    
 def usgs_api():
     '''Perform API call to extract USGS earthquake data and convert to a dataframe.'''
     
@@ -47,16 +52,21 @@ def add_data(df):
     records = df.to_dict(orient="records")
 
     #insert new data to earthquake database, ignore data already in df - check using primary key
+    engine = create_engine("sqlite:///earthquakes.db")
+
+    earthquake_count = 0
     with engine.begin() as conn:
-        conn.execute(text("""
-                INSERT OR IGNORE INTO earthquakes
-                (id, time, place, magnitude, longitude, latitude, depth)
-                VALUES(:id, :time, :place, :magnitude, :longitude, :latitude, :depth)
-        """),
-        records
-        )
+        for event in records:
+            result = conn.execute(text("""
+                    INSERT OR IGNORE INTO earthquakes
+                    (id, time, place, magnitude, longitude, latitude, depth)
+                    VALUES(:id, :time, :place, :magnitude, :longitude, :latitude, :depth)
+            """),
+            event
+            )
+            earthquake_count += result.rowcount
+    print(f"{datetime.now()} - Earthquakes Added: {earthquake_count}")
 
 if __name__ == "__main__":
-    df = usgs_api()
-    add_data(df)
+    main()
 

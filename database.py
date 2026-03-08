@@ -2,17 +2,21 @@ from api import usgs_api
 import pandas as pd
 from sqlalchemy import create_engine,text
 
+#create engine to interact with database
+#states sqlite3 dialect and database to connect to
+engine = create_engine("sqlite:///earthquakes.db")
+
 def main():
     #create table
     create_sqltable()
     #insert new data
     add_data()
     #Sample query for data
-    print(pd.read_sql("SELECT * FROM earthquakes WHERE magnitude > 6 ORDER BY time DESC LIMIT 5;", engine))
+    print(pd.read_sql("SELECT * FROM earthquakes WHERE magnitude > 6 ORDER BY time DESC LIMIT 10;", engine))
 
 # create earthquakes table to store events
 def create_sqltable():
-    engine = create_engine("sqlite:///earthquakes.db")
+
     #create earthquakes table where earthquake id is a primary key
     with engine.connect() as conn:
         conn.execute(text('''
@@ -34,7 +38,6 @@ def add_data():
     records = df.to_dict(orient="records")
 
     #insert new data to earthquake database, ignore data already in df - check using primary key
-    engine = create_engine("sqlite:///earthquakes.db")
     with engine.begin() as conn:
         conn.execute(text("""
                 INSERT OR IGNORE INTO earthquakes

@@ -11,7 +11,5 @@ venv/
 Thumbs.db
 
 # Ignore logs
-*.log
+pipeline_log.txt
 
-# Ignore node modules (for JavaScript projects)
-node_modules/

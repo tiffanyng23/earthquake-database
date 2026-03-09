@@ -10,6 +10,9 @@ venv/
 .DS_Store
 Thumbs.db
 
+# Ignore file
+pipeline.py
+
 # Ignore logs
 pipeline_log.txt
 

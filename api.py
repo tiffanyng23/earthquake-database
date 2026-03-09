@@ -1,6 +1,7 @@
 import requests
 import json
 import pandas as pd
+from datetime import datetime
 
 def main():
     df = usgs_api()
@@ -12,7 +13,7 @@ def usgs_api():
         url = f"https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson"
         response = requests.get(url)
         response.raise_for_status()
-        print(f"Status Code: {response.status_code}")
+        print(f"{datetime.now()} - Status Code: {response.status_code}")
     except requests.exceptions.HTTPError as httperror:
         print(http_error)
     except requests.exceptions.RequestException as error:

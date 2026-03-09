@@ -26,7 +26,7 @@ def usgs_api():
     data = []
     # list of dictionaries, loop through each dictionary/event 
     for event in json_data:
-        eq_event = {"id" : event["properties"]["code"],
+        eq_event = {"id" : event["id"],
                     "time" : event["properties"]["time"],
                     "place": event["properties"]["place"],
                     "magnitude": event["properties"]["mag"],

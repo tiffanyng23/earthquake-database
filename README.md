@@ -12,7 +12,7 @@ Contains the code used to create the database and table and to insert new earthq
 2. Set up a Python virtual environment.
 3. Install the packages listed in requirements.txt.
 4. Run database.py to create the earthquakes.db and earthquakes table, and to insert earthquake events onto the table.
-5. Automate data insertion into the database by creating a script with the usgs_api() function in api.py for the API call, and the add_data() function in database.py to insert new earthquake events to the database. Use cron to schedule the script to run once per day.
+5. Automate data insertion into the database by creating a script with the usgs_api() function from api.py for the API call, and the add_data() function from database.py to insert new earthquake events to the database. Use cron to schedule the script to run once per day.
 
 ### License
 [![License: MIT License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)

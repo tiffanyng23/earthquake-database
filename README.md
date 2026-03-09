@@ -1,5 +1,5 @@
 # USGS Earthquake Database
-A SQLite3 database containing earthquake events extracted from the USGS Earthquake API. Earthquake events are pulled daily, forming a database that records earthquake events from 2026-02-05 21:24:56 EST onwards. Earthquake insights regarding datetime, place, magnitude, coordinates, and depth can be gathered through SQL queries.
+A SQLite3 database containing earthquake events extracted from the USGS Earthquake API. Earthquake events are pulled daily, forming a database that records earthquake events. Earthquake insights regarding datetime, place, magnitude, coordinates, and depth can be gathered through SQL queries.
 
 ### api.py
 Contains the code used for the API call and to convert time to the datetime format and in my local timezone (EST).
